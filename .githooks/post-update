@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# An example hook script to prepare a packed repository for use over
+# dumb transports.
+#
+# To enable this hook, rename this file to "post-update".
+
+pushd ..
+bin/console doc:mig:mig -n
+sudo -u nginx bin/console cache:clear
+
+if which mdbook &> /dev/null; then
+    pushd docs/
+    mdbook build
+fi
