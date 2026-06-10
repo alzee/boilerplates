@@ -2,11 +2,8 @@
 #
 # vim:ft=sh
 
-############### Variables ###############
+set -e
 
-############### Functions ###############
-
-############### Main Part ###############
 project=$(basename $PWD)
 passwd=111
 
