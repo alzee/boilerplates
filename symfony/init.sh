@@ -6,13 +6,14 @@ set -e
 
 project=$(basename $PWD)
 passwd=111
+www_user=www-data
 
 [ -f .env.local ] && . .env.local
 
 sudo -u postgres psql -c "create role $project with login createdb password '$project'";
 
-sudo chown -R al:nginx var/
-sudo chown -R al:nginx public/
+sudo chown -R al:$www_user var/
+sudo chown -R al:$www_user public/
 find public/ -type d -exec chmod 775 {} \;
 find var/ -type d -exec chmod 775 {} \;
 find var/ -type f -exec chmod 664 {} \;
@@ -31,4 +32,3 @@ if [ "$APP_ENV" = prod ]; then
     bin/console secrets:generate-keys
     # bin/console secrets:set APP_SECRET
 fi
-
