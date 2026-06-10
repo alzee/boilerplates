@@ -11,6 +11,12 @@ passwd=111
 
 sudo -u postgres psql -c "create role $project with login createdb password '$project'";
 
+sudo chown -R al:nginx var/
+sudo chown -R al:nginx public/
+find public/ -type d -exec chmod 775 {} \;
+find var/ -type d -exec chmod 775 {} \;
+find var/ -type f -exec chmod 664 {} \;
+
 bin/console doc:data:create
 bin/console doc:m:m -n
 
