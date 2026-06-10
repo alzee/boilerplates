@@ -7,7 +7,7 @@
 
 pushd ..
 bin/console doc:mig:mig -n
-bin/console cache:clear
+sudo -u www-data /home/al/.local/bin/con cache:clear
 
 if which mdbook &> /dev/null; then
     pushd docs/
