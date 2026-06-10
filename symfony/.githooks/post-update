@@ -7,7 +7,7 @@
 
 pushd ..
 bin/console doc:mig:mig -n
-sudo -u nginx bin/console cache:clear
+sudo -u www-data bin/console cache:clear
 
 if which mdbook &> /dev/null; then
     pushd docs/
